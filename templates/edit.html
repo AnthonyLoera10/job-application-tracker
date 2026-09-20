@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,75 +11,78 @@
 
 <body>
 
-    <header>
-        <h1>Edit Job Application</h1>
-    </header>
+```
+<header>
+    <h1>Edit Job Application</h1>
+</header>
 
-    <main>
+<main>
+    <section class="applications">
 
-        <section class="applications">
+        <h2>Update Application</h2>
 
-            <h2>Update Application</h2>
+        <form action="/edit/{{ application['id'] }}" method="POST">
 
-            <form action="/edit/{{ application['id'] }}" method="POST">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company"
+                   value="{{ application['company'] }}" required>
 
-                <label for="company">Company</label>
-                <input type="text" id="company" name="company"
-                       value="{{ application['company'] }}" required>
+            <label for="position">Position</label>
+            <input type="text" id="position" name="position"
+                   value="{{ application['position'] }}" required>
 
-                <label for="position">Position</label>
-                <input type="text" id="position" name="position"
-                       value="{{ application['position'] }}" required>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location"
+                   value="{{ application['location'] }}">
 
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location"
-                       value="{{ application['location'] }}">
+            <label for="date">Date Applied</label>
+            <input type="date" id="date" name="date"
+                   value="{{ application['date_applied'] }}">
 
-                <label for="date">Date Applied</label>
-                <input type="date" id="date" name="date"
-                       value="{{ application['date_applied'] }}">
+            <label for="status">Status</label>
+            <select id="status" name="status">
 
-                <label for="status">Status</label>
-                <select id="status" name="status">
-                    <option value="Applied"
-                        {% if application['status'] == 'Applied' %}selected{% endif %}>
-                        Applied
-                    </option>
+                <option value="Applied"
+                    {% if application['status'] == 'Applied' %}selected{% endif %}>
+                    Applied
+                </option>
 
-                    <option value="Interview"
-                        {% if application['status'] == 'Interview' %}selected{% endif %}>
-                        Interview
-                    </option>
+                <option value="Interview"
+                    {% if application['status'] == 'Interview' %}selected{% endif %}>
+                    Interview
+                </option>
 
-                    <option value="Rejected"
-                        {% if application['status'] == 'Rejected' %}selected{% endif %}>
-                        Rejected
-                    </option>
+                <option value="Rejected"
+                    {% if application['status'] == 'Rejected' %}selected{% endif %}>
+                    Rejected
+                </option>
 
-                    <option value="Offer"
-                        {% if application['status'] == 'Offer' %}selected{% endif %}>
-                        Offer
-                    </option>
-                </select>
+                <option value="Offer"
+                    {% if application['status'] == 'Offer' %}selected{% endif %}>
+                    Offer
+                </option>
 
-                <label for="url">Job URL</label>
-                <input type="url" id="url" name="url"
-                       value="{{ application['url'] }}">
+            </select>
 
-                <label for="notes">Notes</label>
-                <textarea id="notes" name="notes">{{ application['notes'] }}</textarea>
+            <label for="url">Job URL</label>
+            <input type="url" id="url" name="url"
+                   value="{{ application['url'] }}">
 
-                <button type="submit">Save Changes</button>
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes">{{ application['notes'] }}</textarea>
 
-            </form>
+            <button type="submit">Save Changes</button>
 
-            <br>
+        </form>
 
-            <a href="/">Back to Applications</a>
+        <br>
 
-        </section>
+        <a href="/">Back to Applications</a>
 
-    </main>
+    </section>
+</main>
+```
 
 </body>
+
 </html>

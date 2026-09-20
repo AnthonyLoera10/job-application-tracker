@@ -55,6 +55,16 @@
                 <button onclick="filterApplications('Rejected')">Rejected</button>
                 <button onclick="filterApplications('Offer')">Offer</button>
             </div>
+            <input
+            type="text"
+            id="searchInput"
+            placeholder="Search applications..."
+            onkeyup="searchApplications()"
+>
+<select id="sortSelect" onchange="sortApplications()">
+    <option value="newest">Newest First</option>
+    <option value="oldest">Oldest First</option>
+</select>
 
             <div class="application-list">
 
@@ -102,9 +112,18 @@
                             </p>
                         {% endif %}
 
-                        <form action="/delete/{{ application['id'] }}" method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
+                        <div class="application-actions">
+
+    <a href="/edit/{{ application['id'] }}">
+        <button type="button" class="edit-button">Edit</button>
+    </a>
+
+    <form action="/delete/{{ application['id'] }}" method="POST"
+      onsubmit="return confirmDelete()">
+    <button type="submit" class="delete-button">Delete</button>
+</form>
+
+</div>
 
                     </div>
 

@@ -30,6 +30,13 @@ main {
     flex: 1;
     text-align: center;
     border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .stat h2 {
@@ -107,29 +114,7 @@ button {
     background-color: #444;
 }
 
-.status {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: bold;
-}
 
-.status.Applied {
-    background-color: #e0e0e0;
-}
-
-.status.Interview {
-    background-color: #fff3cd;
-}
-
-.status.Rejected {
-    background-color: #f8d7da;
-}
-
-.status.Offer {
-    background-color: #d4edda;
-}
 
 .application-card {
     transition: transform 0.2s, box-shadow 0.2s;
@@ -138,4 +123,87 @@ button {
 .application-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.status.Applied {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.Interview {
+    background-color: #cfe2ff;
+    color: #084298;
+}
+
+.status.Offer {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status.Rejected {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.application-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.application-actions form {
+    margin: 0;
+}
+
+.edit-button {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #0b5ed7;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #bb2d3b;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filters button {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+.filters button:hover {
+    background-color: #d6d8db;
+}
+
+.application-card p {
+    margin: 8px 0;
+}
+
+.application-card h3 {
+    color: #222;
+    margin-bottom: 15px;
 }
