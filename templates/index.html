@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Application Tracker</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Job Application Tracker</h1>
+        <p>Keep track of your internship and job applications.</p>
+    </header>
+
+    <main>
+
+        <section class="dashboard">
+
+            <div class="stat">
+                <h2>{{ total }}</h2>
+                <p>Total Applications</p>
+            </div>
+
+            <div class="stat">
+                <h2>{{ interviews }}</h2>
+                <p>Interviews</p>
+            </div>
+
+            <div class="stat">
+                <h2>{{ offers }}</h2>
+                <p>Offers</p>
+            </div>
+
+            <div class="stat">
+    <h2>{{ rejected }}</h2>
+    <p>Rejected</p>
+</div>
+
+        </section>
+
+        <section class="applications">
+
+            <h2>My Applications</h2>
+
+            <button onclick="showForm()">Add Application</button>
+
+            <div class="filters">
+                <button onclick="filterApplications('All')">All</button>
+                <button onclick="filterApplications('Applied')">Applied</button>
+                <button onclick="filterApplications('Interview')">Interview</button>
+                <button onclick="filterApplications('Rejected')">Rejected</button>
+                <button onclick="filterApplications('Offer')">Offer</button>
+            </div>
+
+            <div class="application-list">
+
+                {% for application in applications %}
+
+                    <div class="application-card">
+
+                        <h3>{{ application["company"] }}</h3>
+
+                        <p>
+                            <strong>Position:</strong>
+                            {{ application["position"] }}
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            {{ application["location"] }}
+                        </p>
+
+                        <p>
+                            <strong>Date Applied:</strong>
+                            {{ application["date_applied"] }}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+
+                            <span class="status {{ application['status'] }}">
+                                {{ application["status"] }}
+                            </span>
+                        </p>
+
+                        {% if application["url"] %}
+                            <p>
+                                <a href="{{ application['url'] }}" target="_blank">
+                                    View Job Posting
+                                </a>
+                            </p>
+                        {% endif %}
+
+                        {% if application["notes"] %}
+                            <p>
+                                <strong>Notes:</strong>
+                                {{ application["notes"] }}
+                            </p>
+                        {% endif %}
+
+                        <form action="/delete/{{ application['id'] }}" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div id="application-form" class="form-container">
+
+                <h3>Add Job Application</h3>
+
+                <form action="/add" method="POST">
+
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
+
+                    <label for="position">Position</label>
+                    <input type="text" id="position" name="position" required>
+
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location">
+
+                    <label for="date">Date Applied</label>
+                    <input type="date" id="date" name="date">
+
+                    <label for="status">Status</label>
+
+                    <select id="status" name="status">
+                        <option value="Applied">Applied</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Offer">Offer</option>
+                    </select>
+
+                    <label for="url">Job URL</label>
+                    <input type="url" id="url" name="url">
+
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" name="notes"></textarea>
+
+                    <button type="submit">Save Application</button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
